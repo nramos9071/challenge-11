@@ -1,19 +1,27 @@
 const express = require('express');
 const path = require('path');
-const routes = require('./routes/noteRoutes');
-
-const api = require('./routes/index');
+// const routes = require('./routes/noteRoutes');
+const notes = require('./routes/noteRoutes');
 
 const app = express();
 
 
-const PORT = 3001;
+const api = require('./routes/index');
+
+app.use(express.json());
+app.use('api', notes)
+
+
+
+
+const PORT = process.env.PORT || 3001;
 
 app.use('routes');
 
 app.use(express.static('public'));
 
-app.use('/api', api);
+
+
 
 app.get('/', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))

@@ -1,10 +1,16 @@
 const notes = require('express').Router();
+const express = require('express');
+const fs = require('fs');
+
+const app = express();
 
 const uuid = require('../helpers/uuid');
 
+app.use('/api', notes);
 
 
-app.post('/api/noteRouter', (req, res) => {
+
+notes.post('/noteRouter', (req, res) => {
     // Log that a POST request was received
     console.info(`${req.method} request received to add a new note.`);
   
