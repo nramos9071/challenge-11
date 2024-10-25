@@ -7,6 +7,7 @@ const uuid = require('../helpers/uuid');
 notes.post('/noteRouter', (req, res) => {
     // Log that a POST request was received
     console.info(`${req.method} request received to add a new note.`);
+    console.log('Request body:', req.body)
    
 
     // Destructuring assignment for the items in req.body

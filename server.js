@@ -9,7 +9,7 @@ const app = express();
 const api = require('./routes/index');
 
 app.use(express.json());
-app.use('api', noteRoutes)
+app.use('/api', noteRoutes)
 
 
 
