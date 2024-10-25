@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 // const routes = require('./routes/noteRoutes');
-const notes = require('./routes/noteRoutes');
+const noteRoutes = require('./routes/noteRoutes');
 
 const app = express();
 
@@ -9,7 +9,7 @@ const app = express();
 const api = require('./routes/index');
 
 app.use(express.json());
-app.use('api', notes)
+app.use('api', noteRoutes)
 
 
 

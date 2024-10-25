@@ -25,29 +25,30 @@ notes.post('/noteRouter', (req, res) => {
 
   
       // Convert the data to a string so we can save it
-      const noteString = JSON.stringify(newNote);
+      const noteString = JSON.stringify(newNote, null, 2);
   
       // Write the string to a file
-      fs.writeFile(path.join(__dirname, `../db/${sanitizedTitle}.json`), JSON.stringify(newNote, null, 2), (err) =>
-          err
-          ? console.error(err)
-          : console.log(
-              `Review for ${newNote.title} has been written to JSON file`
-            )
-      );
-  
-      const response = {
-        status: 'success',
-        body: newNote,
-      };
-  
-      console.log(response);
-      res.status(201).json(response);
-    } else {
-      res.status(500).json('Error in posting note');
-    }
-  });
+      fs.writeFile(path.join(__dirname, `../db/${sanitizedTitle}.json`), noteString, (err) => {
+        if (err) {
+            console.error('Error writing file:', err);
+            res.status(500).json('Error in writing note');
+        } else {
+            console.log(`Review for ${newNote.title} has been written to JSON file`);
+            res.status(201).json({
+                status: 'success',
+                body: newNote,
+            });
+        }
+    });
 
-  module.exports = notes
+} else {
+    console.error('Missing title or text');
+    res.status(500).json('Error in posting note');
+}
+});
+  
+ 
+
+  module.exports = notes;
 
 
