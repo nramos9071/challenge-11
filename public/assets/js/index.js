@@ -29,7 +29,7 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
-  fetch('/api/noteRouter', {
+  fetch('/api/noteRoutes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ const getNotes = () =>
   });
 
 const saveNote = (note) =>
-  fetch('/api/noteRouter', {
+  fetch('/api/notes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

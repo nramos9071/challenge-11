@@ -47,6 +47,21 @@ notes.post('/noteRouter', (req, res) => {
     res.status(500).json('Error in posting note');
 }
 });
+
+notes.get('/notes', (req, res) => {
+    fs.readdir(path.join(__dirname, '../db'), (err, files) => {
+        if (err) {
+            console.error('Error reading files:', err);
+            res.status(500).json('Error in fetching notes');
+        } else {
+            const notes = files.map(file => {
+                const note = fs.readFileSync(path.join(__dirname, '../db', file), 'utf8');
+                return JSON.parse(note);
+            });
+            res.json(notes);
+        }
+    });
+});
   
  
 
