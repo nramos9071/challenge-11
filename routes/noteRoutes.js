@@ -1,13 +1,6 @@
 const notes = require('express').Router();
-const express = require('express');
 const fs = require('fs');
-
-const app = express();
-
 const uuid = require('../helpers/uuid');
-
-app.use('/api', notes);
-
 
 
 notes.post('/noteRouter', (req, res) => {
