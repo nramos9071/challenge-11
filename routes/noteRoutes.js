@@ -48,7 +48,7 @@ notes.post('/noteRouter', (req, res) => {
 }
 });
 
-notes.get('/notes', (req, res) => {
+notes.get('/noteRouter', (req, res) => {
     const dbPath = path.join(__dirname, '../db');
     console.log('Reading directory:', dbPath);
     fs.readdir(dbPath, (err, files) => {

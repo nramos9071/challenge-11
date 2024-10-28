@@ -29,7 +29,7 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
-  fetch('/api/indexRoutes', {
+  fetch('/api/noteRouter', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
