@@ -79,6 +79,9 @@ const renderActiveNote = () => {
     noteTitle.value = '';
     noteText.value = '';
   }
+
+  console.log('noteTitle visible:', noteTitle.style.display !== 'none');
+  console.log('noteText visible:', noteText.style.display !== 'none');
 };
 
 const handleNoteSave = () => {
@@ -122,9 +125,16 @@ const handleNoteView = (e) => {
   e.preventDefault();
   const noteData = e.target.parentElement.getAttribute('data-note');
   console.log('Data-note attribute content:', noteData);
+
   try {
     activeNote = JSON.parse(noteData);
     console.log('Active note:', activeNote);
+
+    // Debugging data integrity
+    console.log('Active note id:', activeNote.note_id);
+    console.log('Active note title:', activeNote.title);
+    console.log('Active note text:', activeNote.text);
+
     renderActiveNote();
   } catch (error) {
     console.error('Error parsing note data:', error);
@@ -212,6 +222,8 @@ if (window.location.pathname === '/notes') {
   newNoteBtn.addEventListener('click', handleNewNoteView);
   clearBtn.addEventListener('click', renderActiveNote);
   noteForm.addEventListener('input', handleRenderBtns);
+
+  console.log('Event listeners attached');
 }
 
 getAndRenderNotes();
