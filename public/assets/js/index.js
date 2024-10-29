@@ -134,7 +134,7 @@ const handleNoteView = (e) => {
     activeNote = JSON.parse(noteData);
     console.log('Active note:', activeNote);
 
-    // Debugging data integrity
+   
     console.log('Active note id:', activeNote.note_id);
     console.log('Active note title:', activeNote.title);
     console.log('Active note text:', activeNote.text);
