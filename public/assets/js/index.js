@@ -13,6 +13,9 @@ if (window.location.pathname === '/notes') {
   newNoteBtn = document.querySelector('.new-note');
   clearBtn = document.querySelector('.clear-btn');
   noteList = document.querySelectorAll('.list-container .list-group');
+
+  console.log('noteTitle element:', noteTitle);
+  console.log('noteText element:', noteText);
 }
 
 // Show an element
@@ -80,6 +83,7 @@ const renderActiveNote = () => {
     noteText.value = '';
   }
 
+  console.log('noteTitle value:', noteTitle.value);
   console.log('noteTitle visible:', noteTitle.style.display !== 'none');
   console.log('noteText visible:', noteText.style.display !== 'none');
 };
