@@ -97,25 +97,23 @@ const handleNoteDelete = (e) => {
   e.stopPropagation();
 
   const note = e.target;
-  const noteData = JSON.parse(note.parentElement.getAttribute('data-note'));
-  if(!noteData) {
-    console.error('Note data attribute not found');
-    return;
+  const noteData = note.parentElement.getAttribute('data-note');
+  
+  try {
+    const parsedNote = JSON.parse(noteData);
+    const noteId = parsedNote.note_id; // Ensure note_id matches the property in the note object
+
+    if (activeNote.id === noteId) {
+      activeNote = {};
+    }
+
+    deleteNote(noteId).then(() => {
+      getAndRenderNotes();
+      renderActiveNote();
+    });
+  } catch (error) {
+    console.error('Error parsing note data:', error);
   }
-
-
-  console.log('Note Data:', noteData);
-  const noteId = JSON.parse(noteData).note_id;
-  console.log('Note Data:', noteID);
-
-  if (activeNote.id === noteId) {
-    activeNote = {};
-  }
-
-  deleteNote(noteId).then(() => {
-    getAndRenderNotes();
-    renderActiveNote();
-  });
 };
 
 // Sets the activeNote and displays it
