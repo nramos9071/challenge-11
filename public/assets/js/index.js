@@ -14,8 +14,8 @@ if (window.location.pathname === '/notes') {
   clearBtn = document.querySelector('.clear-btn');
   noteList = document.querySelectorAll('.list-container .list-group');
 
-  console.log('noteTitle element:', noteTitle);
-  console.log('noteText element:', noteText);
+  console.log('noteTitle element:', noteTitle.value);
+  console.log('noteText element:', noteText.value);
 }
 
 // Show an element
@@ -73,8 +73,9 @@ const renderActiveNote = () => {
     show(newNoteBtn);
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
-    noteTitle.value = activeNote.title;
-    noteText.value = activeNote.text;
+    noteTitle.value = activeNote.title || '';
+    noteText.value = activeNote.text || '';
+  
   } else {
     hide(newNoteBtn);
     noteTitle.removeAttribute('readonly');
@@ -84,6 +85,7 @@ const renderActiveNote = () => {
   }
 
   console.log('noteTitle value:', noteTitle.value);
+  console.log('noteText Value:', noteText.value);
   console.log('noteTitle visible:', noteTitle.style.display !== 'none');
   console.log('noteText visible:', noteText.style.display !== 'none');
 };
