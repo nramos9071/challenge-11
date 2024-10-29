@@ -97,7 +97,16 @@ const handleNoteDelete = (e) => {
   e.stopPropagation();
 
   const note = e.target;
-  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+  const noteData = JSON.parse(note.parentElement.getAttribute('data-note'));
+  if(!noteData) {
+    console.error('Note data attribute not found');
+    return;
+  }
+
+
+  console.log('Note Data:', noteData);
+  const noteId = JSON.parse(noteData).note_id;
+  console.log('Note Data:', noteID);
 
   if (activeNote.id === noteId) {
     activeNote = {};
